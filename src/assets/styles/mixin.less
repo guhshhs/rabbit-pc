@@ -1,0 +1,13 @@
+// 公共的混入样式
+
+.hoverShadow {
+    transition: all .5s;
+
+    // & 当前类
+    &:hover {
+        // 向y轴 3px
+        transform: translateY(-3px);
+        // 盒子阴影
+        box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+    }
+}
