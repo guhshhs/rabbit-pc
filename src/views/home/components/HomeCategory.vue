@@ -1,57 +1,68 @@
-<!-- src/views/home/components/HomeCategory.vue -->
-
-<!-- src/views/home/components/HomeCategory.vue -->
 <template>
     <div class="home-category">
         <ul class="menu">
-            <li v-for="item in categories.homeCategory" :key="item.id">
-                <!-- 一级分类 -->
-                <RouterLink :to="`/category/${item.id}`">
-                    {{ item.name }}
-                </RouterLink>
-                <!-- 二级分类  -->
-                <router-link :to="`/category/sub/${i.id}/${i.id}`" v-for="i in item.children" :key="i.id">
-                    {{ i.name }}
-                </router-link>
-                <div class="layer">
-                    <h4>
-                        分类商品推荐 <small>根据您的购买或浏览记录推荐</small>
-                    </h4>
-                    <ul>
-                        <li v-for="goods in item.goods" :key="goods.id">
-                            <RouterLink to="/">
-                                <img :src="goods.picture" alt="" />
-                                <div class="info">
-                                    <p class="name ellipsis-2">{{ goods.name }}</p>
-                                    <p class="desc ellipsis">{{ goods.desc }}</p>
-                                    <p class="price"><i>¥</i>{{ goods.price }}</p>
-                                </div>
-                            </RouterLink>
-                        </li>
-                    </ul>
-                </div>
-            </li>
-            <li>
-                <RouterLink to="/">品牌</RouterLink>
-                <RouterLink to="/">推荐品牌</RouterLink>
-                <div class="layer">
-                    <h4>分类品牌推荐 <small>根据您的购买或浏览记录推荐</small></h4>
-                    <ul>
-                        <li class="brand" v-for="item in brands.result" :key="item.id">
-                            <RouterLink to="/">
-                                <img :src="item.picture" :alt="item.name" />
-                                <div class="info">
-                                    <p class="place">
-                                        <i class="iconfont icon-dingwei"></i>{{ item.place }}
-                                    </p>
-                                    <p class="name ellipsis">{{ item.name }}</p>
-                                    <p class="desc ellipsis-2">{{ item.desc }}</p>
-                                </div>
-                            </RouterLink>
-                        </li>
-                    </ul>
-                </div>
-            </li>
+            <template v-if="categories.status === 'loading'">
+                <!-- 遍历本地一级分类 -->
+                <li v-for="category in CATEGORIES" :key="category.id">
+                    <!-- 渲染本地一级分类 -->
+                    <a>{{ category.name }}</a>
+                    <!-- 渲染二级分类骨架屏 -->
+                    <XtxSkeleton animated="fade" width="60px" height="18px" bg="rgba(255,255,255,0.2)"
+                        style="margin-right: 5px">
+                    </XtxSkeleton>
+                    <XtxSkeleton animated="fade" width="60px" height="18px" bg="rgba(255,255,255,0.2)"></XtxSkeleton>
+                </li>
+            </template>
+            <template v-else>
+                <li v-for="item in categories.homeCategory" :key="item.id">
+                    <!-- 一级分类 -->
+                    <RouterLink :to="`/category/${item.id}`">
+                        {{ item.name }}
+                    </RouterLink>
+                    <!-- 二级分类  -->
+                    <router-link :to="`/category/sub/${i.id}/${i.id}`" v-for="i in item.children" :key="i.id">
+                        {{ i.name }}
+                    </router-link>
+                    <div class="layer">
+                        <h4>
+                            分类商品推荐 <small>根据您的购买或浏览记录推荐</small>
+                        </h4>
+                        <ul>
+                            <li v-for="goods in item.goods" :key="goods.id">
+                                <RouterLink to="/">
+                                    <img :src="goods.picture" alt="" />
+                                    <div class="info">
+                                        <p class="name ellipsis-2">{{ goods.name }}</p>
+                                        <p class="desc ellipsis">{{ goods.desc }}</p>
+                                        <p class="price"><i>¥</i>{{ goods.price }}</p>
+                                    </div>
+                                </RouterLink>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li>
+                    <RouterLink to="/">品牌</RouterLink>
+                    <RouterLink to="/">推荐品牌</RouterLink>
+                    <div class="layer">
+                        <h4>分类品牌推荐 <small>根据您的购买或浏览记录推荐</small></h4>
+                        <ul>
+                            <li class="brand" v-for="item in brands.result.slice(0, 7)" :key="item.id">
+                                <RouterLink to="/">
+                                    <img :src="item.picture" :alt="item.name" />
+                                    <div class="info">
+                                        <p class="place">
+                                            <i class="iconfont icon-dingwei"></i>{{ item.place }}
+                                        </p>
+                                        <p class="name ellipsis">{{ item.name }}</p>
+                                        <p class="desc ellipsis-2">{{ item.desc }}</p>
+                                    </div>
+                                </RouterLink>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+            </template>
         </ul>
     </div>
 </template>
@@ -59,6 +70,7 @@
 <script setup lang="ts">
 import { useCategoryStore } from '@/stores/Status'
 import useHomeStore from '@/stores/brandStore'
+import { CATEGORIES } from '@/vendors/constants/categories'
 
 const { getCategories } = useCategoryStore()
 getCategories()
@@ -68,13 +80,9 @@ const { categories } = storeToRefs(categoryStore)
 const homeStore = useHomeStore()
 // 品牌
 const { getBrands } = useHomeStore()
-getBrands(9)
+getBrands(10)
 const { brands } = storeToRefs(homeStore)
-console.log(brands.value);
-
-
-
-
+// 轮播图
 
 </script>
 

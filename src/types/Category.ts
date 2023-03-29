@@ -5,6 +5,7 @@ export interface Category {
     id: string;
     name: string;
     picture: string;
+    saleInfo: string;
     children: Category[] | undefined; // 数据结构和Category相同
     goods: Goods[] | undefined
 }

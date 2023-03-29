@@ -1,4 +1,4 @@
-<!-- src/components/XtxHeaderNav.vue -->
+<!-- 导航 -->
 <template>
     <ul class="app-header-nav">
         <li class="home">

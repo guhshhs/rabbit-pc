@@ -1,4 +1,4 @@
-<!-- src/components/XtxTopNav.vue -->
+<!--  头部标题 -->
 <template>
   <nav class="app-top-nav">
     <div class="container">
@@ -26,7 +26,6 @@
 <script setup lang="ts">
 import UserStore from '@/stores/user'
 let userStore = UserStore()
-console.log(userStore.profile.nickname);
 
 
 </script>
@@ -40,7 +39,7 @@ console.log(userStore.profile.nickname);
     height: 53px;
     justify-content: flex-end;
     align-items: center;
-    
+
     li {
       a {
         padding: 0 15px;

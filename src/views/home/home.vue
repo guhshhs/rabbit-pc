@@ -2,10 +2,13 @@
 <template>
   <div class="container">
     <HomeCategory />
+    <HomeBanner />
   </div>
+  <home-page />
 </template>
 
 <script setup lang="ts">
+
 
 </script>
 

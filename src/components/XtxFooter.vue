@@ -1,4 +1,4 @@
-<!-- src/components/XtxFooter.vue -->
+<!-- 尾部 -->
 <template>
   <footer class="app-footer">
     <!-- 联系我们 -->

@@ -1,4 +1,4 @@
-<!-- src/components/XtxHeader.vue -->
+<!-- 头部 -->
 <template>
     <header class="app-header">
         <div class="container">

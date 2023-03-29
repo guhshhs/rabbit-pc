@@ -1,3 +1,4 @@
+<!-- 吸顶导航组件 -->
 <template>
     <div class="app-header-sticky" :class="{ show: scrollTop > 78 }">
         <div class="container" v-show="scrollTop > 78">
@@ -16,7 +17,6 @@ import useScrollTop from '@/logics/useScrollTop'
 
 // const scrollTop = useScrollTop();
 const { y: scrollTop } = useWindowScroll()
-console.log(scrollTop);
 
 
 
