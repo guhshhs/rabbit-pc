@@ -1,10 +1,12 @@
 <template>
   <Router-view />
-  <XtxHeading :level="2">二级标题</XtxHeading>
-  <XtxHeading :level="3">三级标题</XtxHeading>
+  <!-- <goods-detail-page /> -->
 </template>
 
 <script setup lang="ts">
+import type GoodsDetailPage from './views/goods/GoodsDetailPage.vue';
+
+
 </script>
 
 <style scoped></style>

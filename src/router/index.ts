@@ -18,9 +18,19 @@ const router = createRouter({
         path: "category/sub/:top/:sub",
         component: () => import("@/views/category/SubCategoryPage.vue")
       },
+      {
+        path: '/goods/:id',
+        component: () => import("@/views/goods/GoodsDetailPage.vue")
+      }
       ]
+    },
+    {
+      path: '/:catchAlll(.*)',
+      name: 'error',
+      component: () => import("@/views/error/Index.vue")
     }
-  ]
+  ],
+  scrollBehavior: () => ({ top: 0 }),
 })
 
 export default router

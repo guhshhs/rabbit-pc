@@ -128,7 +128,6 @@ export default defineStore<'useHomeStore', State, Getters, Actions>('useHomeStor
                 this.special.status = 'error'
             }
         },
-
-
-    }
+    },
+    persist: true
 })
